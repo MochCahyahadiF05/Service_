@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
-// use Validator;
+use Validator;
 
 class UserController extends Controller
 {
@@ -75,14 +75,26 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validate=$request->validate([
+        $rules=[
             'name'=>'required',
             'email'=>'required',
             'old_password' => 'nullable|string',
             'password'=>'nullable|required_with:old_password|string|confirmed|min:8',
             'role'=>'required',
             'no_telepon'=>'required',
-        ]);
+        ];
+        $messages = [
+            'name.required'=>'Name Harus Diisi!',
+            'email.required'=>'Name Harus Diisi!',
+            'password.min:8'=>'Password Minimal Harus 8!',
+            'role.required'=>'Role jangan Kosong',
+            'no_telepon.required'=>'No Telp Jangan Kosong!',
+        ];
+        $validated = Validator::make($request->all(), $rules, $messages);
+        if ($validated->fails()) {
+            Alert::error('data yang anda input ada kesalahan', 'Oops!')->persistent("Ok");
+            return back()->withErrors($validated);
+        }
         $user=User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
@@ -104,8 +116,9 @@ class UserController extends Controller
         $user->no_telepon = $request->no_telepon;
         $user->no_polisi = $request->no_polisi;
         $user->save();
-        // Alert::success('Done', 'Data berhasil diedit');
-        return back()->with('success','data update');
+        Alert::success('Done', 'Data berhasil diedit');
+        
+        return back();
     }
 
     /**

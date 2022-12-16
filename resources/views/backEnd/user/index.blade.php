@@ -19,6 +19,7 @@
 
 @section('content')
 <div class="container">
+    @include('sweetalert::alert')
     <div class="row justify-content-center">
         <div class="col-md-12">
             {{-- @include('layouts/_flash') --}}
