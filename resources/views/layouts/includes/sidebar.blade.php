@@ -51,6 +51,15 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('barang.index')}}" class="nav-link">
+              {{-- <i class="nav-icon fas fa-th"></i> --}}
+              <i class="fa-solid fa-basket-shopping" style="font-size: 20px"></i>
+              <p class="ml-2">
+                Barang
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

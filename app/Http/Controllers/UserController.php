@@ -131,4 +131,9 @@ class UserController extends Controller
     {
         //
     }
+    public function profile()
+    {
+        $user=User::all();
+        return view('backEnd.user.profile',compact('user'));
+    }
 }
