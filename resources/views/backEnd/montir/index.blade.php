@@ -27,41 +27,33 @@
                 <div class="card-header">
                     Data Barang
                 </div>
-                <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#addBarang"><i class="nav-icon fas fa-plus"></i></button>
-                @include('backEnd.barang.create')
+                <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#addMontir"><i class="nav-icon fas fa-plus"></i></button>
+                @include('backEnd.montir.create')
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table align-middle" id="dataTable">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Gambar</th>
                                     <th>Nama</th>
-                                    <th>merk</th>
-                                    <th>stok_barang</th>
-                                    <th>harga_barang</th>
+                                    <th>Telepon</th>
+                                    <th>Alamat</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php $no = 1; @endphp
-                                @foreach ($barang as $barangs)
+                                @foreach ($montir as $montirs)
                                     <tr>
                                         <td>{{ $no++ }}</td>
+                                        <td>{{ $montirs->nama_montir }}</td>
+                                        <td>{{ $montirs->tlp_montir}} </td>
+                                        <td>{{ $montirs->alamat_montir }}</td>
                                         <td>
-                                            <img src="{{ $barangs->image() }}" style="width: 140px; height: 140px; border-radius: 12px;">
-                                        </td>
-                                        
-                                        <td>{{ $barangs->nama_barang }}</td>
-                                        <td>{{ $barangs->merk }}</td>
-                                        <td>{{ $barangs->stok_barang}} </td>
-                                        <td>{{ $barangs->harga_barang }}</td>
-                                        <td>
-                                            <form action="{{route('barang.destroy',$barangs->id)}}" method="post">
+                                            <form action="{{route('montir.destroy',$montirs->id)}}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#editBarang-{{ $barangs->id }}"><i class="nav-icon fas fa-edit"></i></button>&nbsp;
-                                                <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#showBarang-{{ $barangs->id }}"><i class="nav-icon fas fa-eye"></i></button>&nbsp;
+                                                <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#editMontir-{{ $montirs->id }}"><i class="nav-icon fas fa-edit"></i></button>&nbsp;
                                             
                                             {{-- <a href="{{route('user.edit',$data->id)}}"
                                                 class="btn btn-sm btn-outline-success">
@@ -80,8 +72,8 @@
                                         </td>
                                     </tr>
                                     
-                                    @include('backEnd.barang.edit')
-                                    @include('backEnd.barang.show')
+                                    @include('backEnd.montir.edit')
+                                    
                                 @endforeach
                             </tbody>
                         </table>

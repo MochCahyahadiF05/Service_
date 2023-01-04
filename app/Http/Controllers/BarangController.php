@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Validator;
 
 class BarangController extends Controller
 {
@@ -41,31 +42,39 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        // $rules =[
-        //     'nama_barang'=>'required',
-        //     'merk'=>'required',
-        //     'foto'=>'image|max:2048',
-        //     // 'deskripsi'=>'required',
-        //     'stok_barang'=>'required|number',
-        //     'harga_barang'=>'required|number',
+        $rules =[
+            'nama_barang'=>'required',
+            'merk'=>'required',
+            'foto'=>'image|mimes:jpg,png,svg,jpeg,|max:2048',
+            // 'deskripsi'=>'required',
+            'stok_barang'=>'required|numeric',
+            'harga_barang'=>'required|numeric',
 
-        // ];
-        // $message = [
-        //     'nama_barang.required'=>'Nama Harus Diisi!',
-        //     'merk.required'=>'Merk Harus Diisi!',
-        //     // 'foto'=>'image|max:2048',
-        //     // 'deskripsi'=>'required',
-        //     'stok_barang.required'=>'Jangan Kosong!',
-        //     'harga_barang.required'=>'Jangan Kosong!',
-        // ];
-        $validated = $request->validate([
-            'nama_barang' => 'required',
-            'merk' => 'required',
-            'foto' => 'image|max:2048',
-            // 'deskripsi' => 'required',
-            'stok_barang' => 'required|numeric',
-            'harga_barang' => 'required|numeric',
-        ]);
+        ];
+        $messages = [
+            'nama_barang.required'=>'Nama Harus Diisi!',
+            'merk.required'=>'Merk Harus Diisi!',
+            'foto.mimes'=>'Gambar harus JPG,PNG, dan SVG! ',
+            'foto.image'=>'Hanya Gambar! ',
+            // 'deskripsi'=>'required',
+            'stok_barang.required'=>'Jangan Kosong!',
+            'harga_barang.required'=>'Jangan Kosong!',
+        ];
+
+        $validated = Validator::make($request->all(), $rules, $messages);
+
+        if ($validated->fails()) {
+            Alert::error('data yang anda input ada kesalahan', 'Oops!')->persistent("Ok");
+            return back()->withErrors($validated)->withInput();
+        }
+        // $validated = $request->validate([
+        //     'nama_barang' => 'required',
+        //     'merk' => 'required',
+        //     'foto' => 'image|max:2048',
+        //     // 'deskripsi' => 'required',
+        //     'stok_barang' => 'required|numeric',
+        //     'harga_barang' => 'required|numeric',
+        // ]);
         $barang = new Barang();
         $barang->nama_barang=$request->nama_barang;
         $barang->merk=$request->merk;
@@ -115,14 +124,40 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'nama_barang' => 'required',
-            'merk' => 'required',
-            'foto' => 'image|max:2048',
-            // 'deskripsi' => 'required',
-            'stok_barang' => 'required|numeric',
-            'harga_barang' => 'required|numeric',
-        ]);
+        $rules =[
+            'nama_barang'=>'required',
+            'merk'=>'required',
+            'foto'=>'image|mimes:jpg,png,svg,jpeg,|max:2048',
+            // 'deskripsi'=>'required',
+            'stok_barang'=>'required|numeric',
+            'harga_barang'=>'required|numeric',
+
+        ];
+        $messages = [
+            'nama_barang.required'=>'Nama Harus Diisi!',
+            'merk.required'=>'Merk Harus Diisi!',
+            'foto.mimes'=>'Gambar harus JPG,PNG, dan SVG! ',
+            'foto.image'=>'Hanya Gambar! ',
+            // 'deskripsi'=>'required',
+            'stok_barang.required'=>'Jangan Kosong!',
+            'harga_barang.required'=>'Jangan Kosong!',
+        ];
+
+        $validated = Validator::make($request->all(), $rules, $messages);
+
+        if ($validated->fails()) {
+            Alert::error('data yang anda input ada kesalahan', 'Oops!')->persistent("Ok");
+            return back()->withErrors($validated)->withInput();
+        }
+
+        // $validated = $request->validate([
+        //     'nama_barang' => 'required',
+        //     'merk' => 'required',
+        //     'foto' => 'image|max:2048',
+        //     // 'deskripsi' => 'required',
+        //     'stok_barang' => 'required|numeric',
+        //     'harga_barang' => 'required|numeric',
+        // ]);
         $barang = Barang::findOrFail($id);
         $barang->nama_barang=$request->nama_barang;
         $barang->merk=$request->merk;
@@ -154,7 +189,8 @@ class BarangController extends Controller
         $barang = Barang::findOrFail($id);
         $barang->deleteImage();
         $barang->delete();
-        Alert::success('Done', 'Data berhasil dihapus')->autoClose(2000);
+        // return response()->make()->alert()->question('Title','Lorem Lorem Lorem');
+        // return response()->json(['status' => 'Mahasiswa Berhasil di hapus!']);
         return redirect()->route('barang.index');
     }
 }

@@ -100,18 +100,18 @@
                 <i class="fas fa-th-large"></i>
             </a>
         </li> --}}
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown pr-4">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="fa-solid fa-caret-down"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right">
+            <div class="dropdown-menu dropdown-menu dropdown-menu-right">
                 <span class="dropdown-item dropdown-header">Profile</span><br>
                 <div class="media">
                     <img src="{{asset('dist/img/user1-128x128.jpg')}}" alt="User Avatar" class="img-size-50 mr-3 img-circle ml-2">
                     <div class="media-body">
                         <h2 class="dropdown-item-title">
                             {{Auth::user()->name}}
-                            <span class="float-right text-sm text-primary mr-2"><b>{{Auth::user()->role}}</b></span>
+                            <span class="float-right text-sm text-primary mr-2"></span>
                         </h2>
                         <p class="text-sm">{{Auth::user()->email}}</p>
                     </div>

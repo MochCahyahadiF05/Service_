@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\MontirController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,5 @@ Route::group(['middleware'=>['auth','isAdmin:admin']],function(){
     Route::resource('user',UserController::class);
     Route::resource('setting',ProfileController::class);
     Route::resource('barang',BarangController::class);
+    Route::resource('montir',MontirController::class);
 });

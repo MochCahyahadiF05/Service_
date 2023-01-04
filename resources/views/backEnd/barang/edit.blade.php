@@ -61,14 +61,13 @@
                                     </p>
                                 @endif 
 
-                                <img class="img-preview img-fluid">
-                                <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror"
-                                value="{{ $barangs->foto }}" id="image">
-                                @error('foto')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <img class="img-preview img-fluid">
+                            <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" accept="image/png,image/jpg,image/jpeg,image/svg">
+                            @error('foto')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
