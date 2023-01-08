@@ -63,9 +63,33 @@
           <li class="nav-item">
             <a href="{{route('montir.index')}}" class="nav-link">
               {{-- <i class="nav-icon fas fa-th"></i> --}}
-              <i class="fas fa-user-cog" style="font-size: 20px"></i>
+              <i class="fa-solid fa-users-gear" style="font-size: 20px"></i>
               <p class="ml-2">
                 Montir
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('service.index')}}" class="nav-link">
+              <i class="fa-solid fa-gears" style="font-size: 20px"></i>
+              <p class="ml-2">
+                Layanan Service
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-list" style="font-size: 20px"></i>
+              <p class="ml-2">
+                Riwayat Service
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-chart-bar" style="font-size: 20px"></i>
+              <p class="ml-2">
+                Laporan Service
               </p>
             </a>
           </li>

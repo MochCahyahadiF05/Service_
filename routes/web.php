@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\MontirController;
+use App\Http\Controllers\ServiceController;;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('test', function () {
+    return view('frontEnd.layouts.index');
+});
+Route::get('test/pesan', function () {
+    return view('frontEnd.page.pesan');
+});
+
 Auth::routes();
+
 
 
 Route::group(['middleware'=>['auth','isAdmin:admin']],function(){
@@ -34,4 +43,5 @@ Route::group(['middleware'=>['auth','isAdmin:admin']],function(){
     Route::resource('setting',ProfileController::class);
     Route::resource('barang',BarangController::class);
     Route::resource('montir',MontirController::class);
+    Route::resource('service',ServiceController::class);
 });
