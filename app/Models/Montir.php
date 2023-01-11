@@ -10,4 +10,9 @@ class Montir extends Model
     use HasFactory;
     public $fillable = ['nama_montir','alamat_montir','tlp_montir'];
     public $timestamps = true;
+
+    public function transaksi()
+    {   
+        return $this->hasMany(Transaksi::class, 'id_montir');
+    }
 }

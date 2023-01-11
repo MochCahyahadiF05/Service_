@@ -24,4 +24,8 @@ class Barang extends Model
             return unlink(public_path('gambar/barangs/'. $this->foto));
         }
     }
+    public function transaksi()
+    {   
+        return $this->hasMany(Transaksi::class, 'id_barang');
+    }
 }

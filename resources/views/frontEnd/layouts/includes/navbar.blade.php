@@ -18,7 +18,7 @@
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                              aria-expanded="false">Menu</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="{{url('/test/pesan')}}">Pesan Service</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{route('transaksi.create')}}">Pesan Service</a></li>
                                 <li class="nav-item"><a class="nav-link" href="category.html">About us</a></li>
                             </ul>
                         </li>

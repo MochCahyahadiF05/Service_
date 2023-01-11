@@ -201,7 +201,7 @@
                   <!-- /.tab-pane --> --}}
 
                   <div class="tab-pane" id="settings">
-                    <form class="form-horizontal" method="POST" action="{{route('pesan.store')}}">
+                    <form class="form-horizontal" method="POST" action="{{route('transaksi.store')}}">
                       @csrf
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">Name</label>

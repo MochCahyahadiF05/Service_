@@ -11,4 +11,8 @@ class Service extends Model
     public $fillable = ['nama_service','harga_service'];
     public $timestamps = true;
 
+    public function transaksi()
+    {   
+        return $this->hasMany(Transaksi::class, 'id_service');
+    }
 }

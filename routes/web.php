@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\MontirController;
 use App\Http\Controllers\ServiceController;;
+use App\Http\Controllers\TransaksiController;;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,20 +19,23 @@ use App\Http\Controllers\ServiceController;;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('test', function () {
-    return view('frontEnd.layouts.index');
-});
-Route::get('test/pesan', function () {
-    return view('frontEnd.page.pesan');
-});
+// Route::get('/', function () {
+//     return view('frontEnd.layouts.index');
+// });
+// Route::get('/pesan', function () {
+//     return view('frontEnd.page.pesan');
+// });
 
 Auth::routes();
 
-
+Route::get('transaksi',[ProfileController::class,'create'])->name('transaksi.create');
+Route::post('transaksi/store',[ProfileController::class,'store'])->name('transaksi.store');
+// Route::resource('pesan',TransaksiController::class);
+// Route::resource('transaksi',ProfileController::class);
 
 Route::group(['middleware'=>['auth','isAdmin:admin']],function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
