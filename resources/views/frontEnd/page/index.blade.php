@@ -90,21 +90,21 @@
     <section class="mb-5 mt-5">
         <div class="container">
             <div class="col">
-            <div class="card">
-              <div class="card-header p-2">
-                <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Barang</a></li>
-                  {{-- <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li> --}}
-                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Booking Service</a></li>
-                </ul>
-              </div><!-- /.card-header -->
-              <div class="card-body">
-                <div class="tab-content">
-                  <div class="active tab-pane" id="activity">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, omnis placeat perspiciatis quia delectus voluptate autem voluptatum quam quas ipsa!
-                  </div>
-                  <!-- /.tab-pane -->
-                  {{-- <div class="tab-pane" id="timeline">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Barang</a></li>
+                            {{-- <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li> --}}
+                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Booking Service</a></li>
+                        </ul>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="activity">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, omnis placeat perspiciatis quia delectus voluptate autem voluptatum quam quas ipsa!
+                            </div>
+                            <!-- /.tab-pane -->
+                            {{-- <div class="tab-pane" id="timeline">
                     <!-- The timeline -->
                     <div class="timeline timeline-inverse">
                       <!-- timeline time label -->
@@ -200,116 +200,124 @@
                   </div>
                   <!-- /.tab-pane --> --}}
 
-                  <div class="tab-pane" id="settings">
-                    <form class="form-horizontal" method="POST" action="{{route('transaksi.store')}}">
-                      @csrf
-                      <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control @error('nama') is-invalid @enderror" id="inputName" placeholder="Name" name="nama">
-                          @error('nama')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
+                            <div class="tab-pane" id="settings">
+                                <form class="form-horizontal" method="POST" action="{{route('transaksi.store')}}">
+                                    @csrf
+                                    <div class="form-group row">
+                                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control @error('nama') is-invalid @enderror" id="inputName" placeholder="Name" name="nama">
+                                            @error('nama')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputEmail" class="col-sm-2 col-form-label">No Plat</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control @error('no_polisi') is-invalid @enderror" id="inputEmail" placeholder="D 1234 TES" name="no_polisi">
+                                            @error('no_polisi')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputSkills" class="col-sm-2 col-form-label">Tanggal Boking</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control @error('tgl_boking') is-invalid @enderror" id="inputSkills" placeholder="Skills" name="tgl_boking">
+                                            @error('tgl_boking')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputName2" class="col-sm-2 col-form-label">Alamat</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control @error('alamat') is-invalid @enderror" id="inputExperience" placeholder="Experience" name="alamat"></textarea>
+                                            @error('alamat')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputSkills" class="col-sm-2 col-form-label">Jenis Service</label>
+                                        <div class="col-sm-10">
+                                            {{-- <input type="text" class="form-control" id="inputSkills" placeholder="Skills"> --}}
+                                            <select class="form-contro @error('id_service') is-invalid @enderror" name="id_service">
+                                                <option value="0">Pilih Komponen Request</option>
+                                                @foreach($service as $services)
+                                                <option value="{{$services->id}}">{{$services->nama_service }} | {{$services->harga_service}} </option>
+                                                @endforeach
+                                            </select>
+                                            @error('id_service')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    {{-- <div class="form-group-row">
+                                      <label for="inputExperience" class="col-sm-2 col-form-label">barang?</label>
+                                      <input type="radio" name="yesno" id="yesCheck" onclick="javascript:yesNoCheck();">iya
+                                      <input type="radio" name="yesno" id="noCheck" onclick="javascript:yesNoCheck();">no
+                                    </div> --}}
+                                    {{-- <span id="ifYes" style="display: none"> --}}
+                                      <div class="form-group row">
+                                        <label for="inputExperience" class="col-sm-2 col-form-label">Merk oli</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control @error('id_barang') is-invalid @enderror" name="id_barang">
+                                                <option value="0">Pilih Komponen Request</option>
+                                                @foreach($barang as $barangs)
+                                                <option value="{{$barangs->id}}">{{$barangs->nama_barang }} | {{$barangs->harga_barang}} </option>
+                                                @endforeach
+                                            </select>
+                                            @error('id_barang')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputSkills" class="col-sm-2 col-form-label">qty</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control @error('jumlah') is-invalid @enderror" id="inputSkills" placeholder="qty" name="jumlah">
+                                            @error('jumlah')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    {{-- </span> --}}
+                                    <div class="form-group row">
+                                        <div class="offset-sm-2 col-sm-10">
+                                            <button type="submit" class="btn btn-danger">pesan</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                            <!-- /.tab-pane -->
                         </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">No Plat</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control @error('no_polisi') is-invalid @enderror" id="inputEmail" placeholder="D 1234 TES" name="no_polisi">
-                          @error('no_polisi')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputSkills" class="col-sm-2 col-form-label">Tanggal Boking</label>
-                        <div class="col-sm-10">
-                          <input type="date" class="form-control @error('tgl_boking') is-invalid @enderror" id="inputSkills" placeholder="Skills" name="tgl_boking">
-                          @error('tgl_boking')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputName2" class="col-sm-2 col-form-label">Alamat</label>
-                        <div class="col-sm-10">
-                          <textarea class="form-control @error('alamat') is-invalid @enderror" id="inputExperience" placeholder="Experience" name="alamat"></textarea>
-                          @error('alamat')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputSkills" class="col-sm-2 col-form-label">Jenis Service</label>
-                        <div class="col-sm-10">
-                          {{-- <input type="text" class="form-control" id="inputSkills" placeholder="Skills"> --}}
-                          <select class="form-contro @error('id_service') is-invalid @enderror" name="id_service">
-                            <option value="0">Pilih Komponen Request</option>
-                            @foreach($service as $services)
-                              <option value="{{$services->id}}">{{$services->nama_service  }} | {{$services->harga_service}} </option>  
-                            @endforeach
-                          </select>
-                          @error('id_service')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputExperience" class="col-sm-2 col-form-label">Merk oli</label>
-                        <div class="col-sm-10">
-                          <select class="form-control @error('id_barang') is-invalid @enderror" name="id_barang">
-                            <option value="0">Pilih Komponen Request</option>
-                            @foreach($barang as $barangs)
-                              <option value="{{$barangs->id}}">{{$barangs->nama_barang  }} | {{$barangs->harga_barang}} </option>  
-                            @endforeach
-                          </select>
-                          @error('id_barang')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputSkills" class="col-sm-2 col-form-label">qty</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control @error('jumlah') is-invalid @enderror" id="inputSkills" placeholder="qty" name="jumlah">
-                          @error('jumlah')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">save</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  <!-- /.tab-pane -->
+                        <!-- /.tab-content -->
+                    </div><!-- /.card-body -->
                 </div>
-                <!-- /.tab-content -->
-              </div><!-- /.card-body -->
+                <!-- /.card -->
             </div>
-            <!-- /.card -->
-          </div>
         </div>
-    </section> 
+    </section>
     <!-- end product Area -->
 
-    
+
 
     <br>
     <br>
@@ -334,6 +342,16 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
     <script src="{{asset('frontEnd/assets/js/gmaps.min.js')}}"></script>
     <script src="{{asset('frontEnd/assets/js/main.js')}}"></script>
+    <script type="text/javascript">
+      function yesNoCheck(){
+        if (document.getElementById('yesCheck').checked) {
+          document.getElementById('ifYes').style.display='block';
+        }
+        else{
+          document.getElementById('ifYes').style.display='none';
+        }
+      }
+    </script>
 </body>
 
 </html>
