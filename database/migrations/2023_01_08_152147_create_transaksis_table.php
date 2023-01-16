@@ -30,6 +30,7 @@ return new class extends Migration
             $table->unsignedbigInteger('id_montir')->nullable();
             $table->foreign('id_montir')->references('id')->on('montirs');
             $table->integer('total')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

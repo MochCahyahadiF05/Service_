@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Barang</h1>
+                <h1 class="m-0">Riwayat Service</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Barang v1</li>
+                    <li class="breadcrumb-item active">Riwayat Service v1</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -25,9 +25,9 @@
             {{-- @include('layouts/_flash') --}}
             <div class="card">
                 <div class="card-header">
-                    Data Barang
+                    Data Riwayat Service
                 </div>
-                <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#addService"><i class="nav-icon fas fa-plus"></i></button>
+                {{-- <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#addService"><i class="nav-icon fas fa-plus"></i></button> --}}
                 {{-- @include('backEnd.service.create') --}}
                 <div class="card-body">
                     <div class="table-responsive">
@@ -36,30 +36,40 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>Harga</th>
+                                    <th>No Polisi</th>
+                                    <th>Tgl Booking</th>
+                                    <th>Jenis Service</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php $no = 1; @endphp
-                                @foreach ($service as $services)
+                                @foreach ($transaksi as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $services->nama_service }}</td>
-                                        <td> Rp. {{ number_format($services->harga_service,0,",",".")}} </td>
+                                        <td>{{ $data->nama}}</td>
+                                        <td>{{ $data->no_polisi }}</td>
+                                        <td>{{ $data->tgl_boking }}</td>
+                                        <td>{{ $data->service->nama_service }}</td>
+                                        <td>Rp {{ number_format($data->total)}}</td>
+                                        <td>{{$data->status}}</td>
                                         <td>
-                                            <form action="{{route('service.destroy',$services->id)}}" method="post">
+                                            <form action="" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#editService-{{ $services->id }}"><i class="nav-icon fas fa-edit"></i></button>&nbsp;
-                                                <button type="submit" class="btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Delete' onclick="return confirm('apakah anda yakin?')">
+                                                <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#detaiTransaksi-{{$data->id}}"><i class="nav-icon fas fa-eye"></i></button>&nbsp;
+                                                <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#updateTransaksi-{{ $data->id }}"><i class="nav-icon fas fa-edit"></i></button>&nbsp;
+                                                {{-- <button type="submit" class="btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Delete' onclick="return confirm('apakah anda yakin?')">
                                                     <i class="nav-icon fas fa-trash-alt"></i> 
-                                                </button>
+                                                </button> --}}
                                             </form>
                                         </td>
                                     </tr>
                                     
-                                    {{-- @include('backEnd.service.edit') --}}
+                                    @include('backEnd.transaksi.show')
+                                    @include('backEnd.transaksi.edit')
                                     
                                 @endforeach
                             </tbody>

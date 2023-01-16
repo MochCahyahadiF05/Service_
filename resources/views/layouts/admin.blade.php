@@ -130,5 +130,25 @@
         });
 
     </script>
+    {{-- <script src="https://cdnnjs.cloudflare.com/ajax/libs/sweetalert/2.1.9/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $('.show_confirm').click(function(event){
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                title:'are you sure wou want to delete this record?',
+                text:"if you delete this, it will be gone forever",
+                icon:"warning",
+                button:true,
+                dangerMode:true
+            })
+            .then((willDelete)=>{
+                if(willDelete){
+                    form.submit();
+                }
+            });
+        });
+    </script> --}}
 </body>
 </html>

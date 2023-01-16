@@ -78,7 +78,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('transaksi.adminTable')}}" class="nav-link">
               <i class="fa-solid fa-list" style="font-size: 20px"></i>
               <p class="ml-2">
                 Riwayat Service

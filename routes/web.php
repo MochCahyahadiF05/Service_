@@ -23,9 +23,9 @@ use App\Http\Controllers\TransaksiController;;
 //     return view('welcome');
 // });
 
-// Route::get('/', function () {
-//     return view('frontEnd.layouts.index');
-// });
+Route::get('/', function () {
+    return view('frontEnd.layouts.index');
+});
 // Route::get('/pesan', function () {
 //     return view('frontEnd.page.pesan');
 // });
@@ -42,6 +42,8 @@ Route::group(['middleware'=>['auth','isAdmin:admin']],function(){
     // Route::get('MyProfile',[UserController::class,'profile'])->name('profile');
     Route::get('user/profile/{id}', [UserController::class,'profile'])->name('user.profile');
     Route::post('user/profile/update', [UserController::class,'update'])->name('user.update');
+    Route::get('tabel/transaksi',[ProfileController::class,'adminTable'])->name('transaksi.adminTable');
+    Route::put('tabel/transaksi/update{id}',[ProfileController::class,'update'])->name('transaksi.update');
     
     Route::resource('user',UserController::class);
     Route::resource('setting',ProfileController::class);

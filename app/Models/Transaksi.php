@@ -24,5 +24,9 @@ class Transaksi extends Model
         
         return $this->belongsTo(Montir::class, 'id_montir');
     }
+    public function barang(){
+        
+        return $this->belongsTo(Barang::class, 'id_barang');
+    }
 }
 
