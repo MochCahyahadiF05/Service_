@@ -12,10 +12,10 @@
                     <div class="container">
                         <div class="mb-3">
                             <label class="form-label">Pilih Montir</label>
-                            <select class="form-select @error('id_montir') is-invalid @enderror" name="id_montir">
-                                <option value="null" aria-readonly="false">Pilih Montir</option>
+                            <select class="form-select @error('id_montir') is-invalid @enderror" name="id_montir" value="{{$data->id_montir}}">
+                                <option value="null" aria-readonly="false" selected>Pilih Montir</option>
                                 @foreach($montir as $montirs)
-                                <option value="{{$montirs->id}}">{{$montirs->nama_montir }}</option>
+                                <option value="{{$montirs->id}}" {{$montirs->id == $montirs->id ? 'selected' : ''}}>{{$montirs->nama_montir }}</option>
                                 @endforeach
                             </select>
                             @error('id_montir')
@@ -29,10 +29,10 @@
                             <select class="form-select @error('status') is-invalid @enderror" name="status">
                                 <option value="null" aria-readonly="false">Status</option>
 
-                                <option value="Boking">Booking</option>
-                                <option value="Proses">Proses</option>
-                                <option value="Selesai">Selesai</option>
-                                <option value="Cencel">Cenceled</option>
+                                <option value="Boking" {{$data->status == 'Boking' ? 'selected' : ''}}>Booking</option>
+                                <option value="Proses" {{$data->status == 'Proses' ? 'selected' : ''}}>Proses</option>
+                                <option value="Selesai"{{$data->status == 'Selesai' ? 'selected' : ''}}>Selesai</option>
+                                <option value="Cencel"{{$data->status == 'Cencel' ? 'selected' : ''}}>Cenceled</option>
 
                             </select>
                             @error('status')

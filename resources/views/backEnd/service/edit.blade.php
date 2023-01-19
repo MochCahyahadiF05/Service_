@@ -28,6 +28,10 @@
                             </span>
                             @enderror
                         </div>
+                        <div class="mb-3">
+                            <label for="floatingTextarea">Description</label>
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="deskripsi">{{$services->deskripsi}}</textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

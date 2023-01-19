@@ -46,7 +46,8 @@ class ServiceController extends Controller
     {
         $rules = [
             'nama_service'=>'required',
-            'harga_service'=>'required'
+            'harga_service'=>'required',
+            // 'deskripsi'=>'nullable'
         ];
         $messages = [
             'nama_service.required'=>'Nama Tidak Boleh Kosong!',
@@ -63,6 +64,7 @@ class ServiceController extends Controller
         $service = new Service();
         $service->nama_service = $request->nama_service;
         $service->harga_service = $request->harga_service;
+        $service->deskripsi = $request->deskripsi;
         $service->save();
         Alert::success('Done', 'Data berhasil dibuat');
         return back();
@@ -118,6 +120,7 @@ class ServiceController extends Controller
         $service = Service::findOrFail($id);
         $service->nama_service = $request->nama_service;
         $service->harga_service = $request->harga_service;
+        $service->deskripsi = $request->deskripsi;
         $service->save();
         Alert::success('Done', 'Data berhasil diedit');
         return back();

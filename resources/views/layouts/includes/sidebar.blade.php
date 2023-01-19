@@ -86,7 +86,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('laporan.index')}}" class="nav-link">
               <i class="fa-solid fa-chart-bar" style="font-size: 20px"></i>
               <p class="ml-2">
                 Laporan Service

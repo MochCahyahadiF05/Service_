@@ -10,7 +10,7 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="mb-3">
-                            <label class="form-label">Nama Montir</label>
+                            <label class="form-label">Layanan Service</label>
                             <input type="text" class="form-control  @error('nama_service') is-invalid @enderror" name="nama_service">
                             @error('nama_service')
                             <span class="invalid-feedback" role="alert">
@@ -19,13 +19,17 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Telepon</label>
+                            <label class="form-label">Harga Jasa</label>
                             <input type="number" class="form-control  @error('harga_service') is-invalid @enderror" name="harga_service">
                             @error('harga_service')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="floatingTextarea">Description</label>
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="deskripsi"></textarea>
                         </div>
                     </div>
                 </div>

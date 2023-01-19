@@ -7,6 +7,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\MontirController;
 use App\Http\Controllers\ServiceController;;
 use App\Http\Controllers\TransaksiController;;
+use App\Http\Controllers\PDFController;;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,10 +41,17 @@ Route::post('transaksi/store',[ProfileController::class,'store'])->name('transak
 Route::group(['middleware'=>['auth','isAdmin:admin']],function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     // Route::get('MyProfile',[UserController::class,'profile'])->name('profile');
+    // user
     Route::get('user/profile/{id}', [UserController::class,'profile'])->name('user.profile');
     Route::post('user/profile/update', [UserController::class,'update'])->name('user.update');
+    //transaksi 
     Route::get('tabel/transaksi',[ProfileController::class,'adminTable'])->name('transaksi.adminTable');
     Route::put('tabel/transaksi/update{id}',[ProfileController::class,'update'])->name('transaksi.update');
+    //pdf
+    Route::get('laporan',[PDFController::class,'index'])->name('laporan.index');
+    Route::post('laporan/print',[PDFController::class,'print'])->name('laporan.print');
+    Route::get('laporan/print/struk/{id}',[PDFController::class,'show'])->name('laporan.show');
+    Route::get('laporan/generate',[PDFController::class,'generatePdf'])->name('laporan.generate');
     
     Route::resource('user',UserController::class);
     Route::resource('setting',ProfileController::class);
