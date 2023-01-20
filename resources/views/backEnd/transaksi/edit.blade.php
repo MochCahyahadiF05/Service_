@@ -15,7 +15,9 @@
                             <select class="form-select @error('id_montir') is-invalid @enderror" name="id_montir" value="{{$data->id_montir}}">
                                 <option value="null" aria-readonly="false" selected>Pilih Montir</option>
                                 @foreach($montir as $montirs)
-                                <option value="{{$montirs->id}}" {{$montirs->id == $montirs->id ? 'selected' : ''}}>{{$montirs->nama_montir }}</option>
+                                    @if($montirs->status == 'aktif')
+                                    <option value="{{$montirs->id}}" {{$montirs->id == $montirs->id ? 'selected' : ''}}>{{$montirs->nama_montir }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             @error('id_montir')

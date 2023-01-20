@@ -61,6 +61,7 @@ class MontirController extends Controller
         $montir->nama_montir = $request->nama_montir;
         $montir->alamat_montir = $request->alamat_montir;
         $montir->tlp_montir = $request->tlp_montir;
+        $montir->status = $request->status;
         $montir->save();
         Alert::success('Done', 'Data berhasil dibuat');
         return back();
@@ -121,6 +122,7 @@ class MontirController extends Controller
         $montir->nama_montir = $request->nama_montir;
         $montir->alamat_montir = $request->alamat_montir;
         $montir->tlp_montir = $request->tlp_montir;
+        $montir->status = $request->status;
         $montir->save();
         Alert::success('Done', 'Data berhasil dibuat');
         return back();

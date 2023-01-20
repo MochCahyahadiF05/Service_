@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama_montir');
             $table->string('alamat_montir');
             $table->string('tlp_montir');
+            $table->string('status')->default('aktif');
             $table->timestamps();
         });
     }

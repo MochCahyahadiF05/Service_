@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
     use HasFactory;
-    public $fillable = ['nama_barang', 'merk','foto','deskripsi','stok_barang','harga_barang'];
+    public $fillable = ['nama_barang', 'merk','foto','deskripsi','stok_barang','harga_barang','status'];
     public $timestamps = true;
 
     public function image(){

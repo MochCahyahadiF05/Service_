@@ -88,6 +88,7 @@ class BarangController extends Controller
         $barang->deskripsi=$request->deskripsi;
         $barang->stok_barang=$request->stok_barang;
         $barang->harga_barang=$request->harga_barang;
+        $barang->status = $request->status;
         $barang->save();
         Alert::success('Done', 'Data berhasil dibuat');
         return back();
@@ -172,6 +173,7 @@ class BarangController extends Controller
         $barang->deskripsi=$request->deskripsi;
         $barang->stok_barang=$request->stok_barang;
         $barang->harga_barang=$request->harga_barang;
+        $barang->status = $request->status;
         $barang->save();
             // dd($request->all());
         Alert::success('Done', 'Data berhasil diubah');

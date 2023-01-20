@@ -32,6 +32,19 @@
                             <label for="floatingTextarea">Description</label>
                             <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="deskripsi">{{$services->deskripsi}}</textarea>
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select class="form-select @error('status') is-invalid @enderror" name="status">
+                                <option value="null" aria-readonly="false">Status</option>
+                                <option value="aktif">Aktif</option>
+                                <option value="tidak aktif">Tidak Aktif</option>
+                            </select>
+                            @error('status')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

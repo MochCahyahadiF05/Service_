@@ -254,7 +254,9 @@
                                             <select class="form-contro @error('id_service') is-invalid @enderror" name="id_service">
                                                 <option value="0">Pilih Komponen Request</option>
                                                 @foreach($service as $services)
+                                                @if($services->status == 'aktif')
                                                 <option value="{{$services->id}}">{{$services->nama_service }} | {{$services->harga_service}} </option>
+                                                @endif
                                                 @endforeach
                                             </select>
                                             @error('id_service')
@@ -276,7 +278,9 @@
                                             <select class="form-control @error('id_barang') is-invalid @enderror" name="id_barang">
                                                 <option value="0">Pilih Komponen Request</option>
                                                 @foreach($barang as $barangs)
+                                                @if($barangs->status == 'ready')
                                                 <option value="{{$barangs->id}}">{{$barangs->nama_barang }} | {{$barangs->harga_barang}} </option>
+                                                @endif
                                                 @endforeach
                                             </select>
                                             @error('id_barang')

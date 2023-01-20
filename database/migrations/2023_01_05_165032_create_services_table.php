@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama_service');
             $table->integer('harga_service');
             $table->text('deskripsi')->nullable();
+            $table->string('status')->default('aktif');
             $table->timestamps();
         });
     }

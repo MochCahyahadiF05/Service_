@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('deskripsi')->nullable();
             $table->integer('stok_barang');
             $table->integer('harga_barang');
+            $table->string('status')->default('ready');
             $table->timestamps();
         });
     }

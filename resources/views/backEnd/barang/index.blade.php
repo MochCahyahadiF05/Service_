@@ -40,6 +40,7 @@
                                     <th>merk</th>
                                     <th>stok_barang</th>
                                     <th>harga_barang</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -56,6 +57,7 @@
                                         <td>{{ $barangs->merk }}</td>
                                         <td>{{ $barangs->stok_barang}} </td>
                                         <td>{{ $barangs->harga_barang }}</td>
+                                        <td>{{ $barangs->status}}</td>
                                         <td>
                                             <form action="{{route('barang.destroy',$barangs->id)}}" method="post">
                                                 @csrf

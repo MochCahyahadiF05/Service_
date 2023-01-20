@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Barang</h1>
+                <h1 class="m-0">Service</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Barang v1</li>
+                    <li class="breadcrumb-item active">Service v1</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -25,7 +25,7 @@
             {{-- @include('layouts/_flash') --}}
             <div class="card">
                 <div class="card-header">
-                    Data Barang
+                    Data Service
                 </div>
                 <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#addService"><i class="nav-icon fas fa-plus"></i></button>
                 @include('backEnd.service.create')
@@ -37,6 +37,7 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>Harga</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -47,6 +48,7 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $services->nama_service }}</td>
                                         <td> Rp. {{ number_format($services->harga_service,0,",",".")}} </td>
+                                        <td>{{$services->status}}</td>
                                         <td>
                                             <form action="{{route('service.destroy',$services->id)}}" method="post">
                                                 @csrf

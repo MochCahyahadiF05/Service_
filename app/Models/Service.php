@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     use HasFactory;
-    public $fillable = ['nama_service','harga_service','deskripsi'];
+    public $fillable = ['nama_service','harga_service','deskripsi','status'];
     public $timestamps = true;
 
     public function transaksi()

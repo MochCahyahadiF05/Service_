@@ -33,6 +33,19 @@
                             <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="alamat_montir"></textarea>
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select class="form-select @error('status') is-invalid @enderror" name="status">
+                            <option value="null" aria-readonly="false">Status</option>
+                            <option value="aktif">Aktif</option>
+                            <option value="tidak aktif">Tidak Aktif</option>
+                        </select>
+                        @error('status')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

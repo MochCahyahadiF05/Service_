@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Montir extends Model
 {
     use HasFactory;
-    public $fillable = ['nama_montir','alamat_montir','tlp_montir'];
+    public $fillable = ['nama_montir','alamat_montir','tlp_montir','status'];
     public $timestamps = true;
 
     public function transaksi()

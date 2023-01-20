@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Barang</h1>
+                <h1 class="m-0">Montir</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Barang v1</li>
+                    <li class="breadcrumb-item active">Montir v1</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -25,7 +25,7 @@
             {{-- @include('layouts/_flash') --}}
             <div class="card">
                 <div class="card-header">
-                    Data Barang
+                    Data Montir
                 </div>
                 <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#addMontir"><i class="nav-icon fas fa-plus"></i></button>
                 @include('backEnd.montir.create')
@@ -38,6 +38,7 @@
                                     <th>Nama</th>
                                     <th>Telepon</th>
                                     <th>Alamat</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -49,6 +50,7 @@
                                         <td>{{ $montirs->nama_montir }}</td>
                                         <td>{{ $montirs->tlp_montir}} </td>
                                         <td>{{ $montirs->alamat_montir }}</td>
+                                        <td>{{$montirs->status}}</td>
                                         <td>
                                             <form action="{{route('montir.destroy',$montirs->id)}}" method="post">
                                                 @csrf

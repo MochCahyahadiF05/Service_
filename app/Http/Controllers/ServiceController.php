@@ -65,6 +65,7 @@ class ServiceController extends Controller
         $service->nama_service = $request->nama_service;
         $service->harga_service = $request->harga_service;
         $service->deskripsi = $request->deskripsi;
+        $service->status = $request->status;
         $service->save();
         Alert::success('Done', 'Data berhasil dibuat');
         return back();
@@ -121,6 +122,7 @@ class ServiceController extends Controller
         $service->nama_service = $request->nama_service;
         $service->harga_service = $request->harga_service;
         $service->deskripsi = $request->deskripsi;
+        $service->status = $request->status;
         $service->save();
         Alert::success('Done', 'Data berhasil diedit');
         return back();
