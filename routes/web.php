@@ -27,6 +27,9 @@ use App\Http\Controllers\PDFController;;
 Route::get('/', function () {
     return view('frontEnd.layouts.index');
 });
+Route::get('/kontak', function () {
+    return view('frontEnd.page.countak');
+});
 // Route::get('/pesan', function () {
 //     return view('frontEnd.page.pesan');
 // });

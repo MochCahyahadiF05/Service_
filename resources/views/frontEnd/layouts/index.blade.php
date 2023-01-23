@@ -62,7 +62,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-7 col-md">
+                            <div class="col-lg-7 col-md-6 ">
                                 <div class="banner-img">
                                     <center>
                                         <img class="" src="{{asset('frontEnd/assets/img/Motorbike2.png')}}" alt="" style="height: 650px; width:650px;">
@@ -243,9 +243,19 @@
     <script src="{{asset('frontEnd/assets/js/jquery.magnific-popup.min.js')}}"></script>
     <script src="{{asset('frontEnd/assets/js/owl.carousel.min.js')}}"></script>
     <!--gmaps Js-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script> --}}
     <script src="{{asset('frontEnd/assets/js/gmaps.min.js')}}"></script>
     <script src="{{asset('frontEnd/assets/js/main.js')}}"></script>
 </body>
-
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/63bf915747425128790cfc35/1gmi4vhod';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
 </html>
