@@ -8,6 +8,10 @@ use Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 class MontirController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *

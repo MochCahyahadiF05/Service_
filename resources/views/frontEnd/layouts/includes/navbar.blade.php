@@ -36,12 +36,17 @@
                                 @endauth
                             @endif
 						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
-							<li class="nav-item">
-								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-							</li>
-						</ul>
+                        <ul class="nav navbar-nav navbar-right">
+                                @if(Route::has('login'))
+                                    @auth    
+                                    <li class="nav-item"><a href="{{route('profile.index',Auth::user()->id)}}" class="cart"><span class="ti-user"></span></a></li>
+                                    <li class="nav-item"><a href="{{route('riwayat.index',Auth::user()->id)}}" class="cart"><span class="ti-time"></span></a></li>
+                                    @endauth
+                                @endif
+                                <li class="nav-item">
+                                    <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
+                                </li>
+                            </ul>
 					</div>
 				</div>
 			</nav>

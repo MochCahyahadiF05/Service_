@@ -14,7 +14,7 @@
                         </div>
                         <div class="col">
                             <label for="" class="form-label">Nama Montir</label>
-                            <input type="text" class="form-control" value="{{$data->montir->nama_montir ?? 'none'}}" readonly>
+                            <input type="text" class="form-control" value="{{$data->montir->nama_montir ?? 'Belum DI Terima'}}" readonly>
                         </div>
                     </div>
                     <div class="row mt-2">

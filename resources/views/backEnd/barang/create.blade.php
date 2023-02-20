@@ -52,7 +52,7 @@
                         </div> --}}
 
                         <div class="mb-3">
-                            <label class="form-label">Foto Mobil</label>
+                            <label class="form-label">Foto baran</label>
                             <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" accept="image/png,image/jpg,image/jpeg,image/svg">
                             @error('foto')
                             <span class="invalid-feedback" role="alert">
@@ -68,7 +68,7 @@
                         <div class="mb-3">
                             <label class="form-label">Status</label>
                             <select class="form-select @error('status') is-invalid @enderror" name="status">
-                                <option value="null" aria-readonly="false">Status</option>
+                                {{-- <option value="null" aria-readonly="false">Status</option> --}}
                                 <option value="ready">Ready</option>
                                 <option value="sold">Sold</option>
                             </select>

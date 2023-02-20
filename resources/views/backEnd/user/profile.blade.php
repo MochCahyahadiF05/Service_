@@ -201,7 +201,7 @@
                                     <input class="form-check-input" type="hidden" name="role" id="radioRole" value="{{Auth::user()->role}}">
                                     <input type="hidden" class="form-control" id="formNumberPon" placeholder="name@example.com" name="no_polisi" value="{{Auth::user()->no_polisi}}">
                                     <input type="hidden" class="form-control" id="formEmail" name="email" placeholder="name@example.com" value="{{Auth::user()->email}}">
-                                    <input type="hidden" class="form-control" id="formNumberPon" placeholder="name@example.com" name="no_telepon" value="{{Auth::user()->no_telepon}}">
+                                    {{-- <input type="hidden" class="form-control" id="formNumberPon" placeholder="name@example.com" name="no_telepon" value="{{Auth::user()->no_telepon}}"> --}}
                                 </div>
 
                             </div>

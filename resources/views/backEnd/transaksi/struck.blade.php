@@ -38,12 +38,12 @@
                         <tr>
                             <td>No Polisi</td>
                             <td>:</td>
-                            <td>D 1213 za</td>
+                            <td>{{$transaksi->no_polisi}}</td>
                         </tr>
                         <tr>
-                            <td>Nama Mekanik</td>
+                            <td>Nama Montir</td>
                             <td>:</td>
-                            <td>D 1213 za</td>
+                            <td>{{$transaksi->montir->nama_montir}}</td>
                         </tr>
                     </table>
                 </div>
@@ -52,17 +52,17 @@
                         <tr>
                             <td>Nama</td>
                             <td>:</td>
-                            <td>Nama</td>
+                            <td>{{$transaksi->nama}}</td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
                             <td>:</td>
-                            <td>Alamat</td>
+                            <td>{{$transaksi->alamat}}</td>
                         </tr>
                         <tr>
                             <td>No Telepon</td>
                             <td>:</td>
-                            <td>No Telepon</td>
+                            <td>{{$transaksi->user->no_telepon}}</td>
                         </tr>
                     </table>
                 </div>
@@ -78,23 +78,33 @@
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td>Service Ringan</td>
-                        <td>Rp. 75.000</td>
+                        <td>{{$transaksi->service->nama_service}}</td>
+                        <td>Rp. {{number_format($transaksi->service->harga_service,0,',','.')}}</td>
                         <td>1</td>
                     </tr>
+                    @if($transaksi->id_barang)
+                        
                     <tr>
                         <td>2</td>
-                        <td>Oli Dunh</td>
-                        <td>Rp. 30.000</td>
+                        <td>{{$transaksi->barang->merk}}</td>
+                        <td>Rp. {{number_format($transaksi->barang->harga_barang,0,',','.')}}</td>
                         <td>2</td>
                     </tr>
-                    <tr>
+                    @endif
+                    {{-- <tr>
                         <td colspan="2" align="right">Total Part</td>
                         <td colspan="2" align="right">Rp 21</td>
-                    </tr>
+                    </tr> --}}
+                    @php
+                        if ($transaksi->id_barang) {
+                            $total=$transaksi->service->harga_service+($transaksi->barang->harga_barang*$transaksi->jumlah);
+                        }else{
+                            $total=$transaksi->service->harga_service;
+                        }
+                    @endphp
                     <tr>
                         <td colspan="2" align="right">Grand Total</td>
-                        <td colspan="2" align="right">Rp 21</td>
+                        <td colspan="2" align="right">Rp. {{number_format($total,0,',','.')}}</td>
                     </tr>
                 </table>
             </div>

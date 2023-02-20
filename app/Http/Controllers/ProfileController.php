@@ -2,29 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
-use App\Models\Montir;
-use App\Models\Service;
-use App\Models\Transaksi;
-use App\Models\User;
-use Auth;
 use RealRashid\SweetAlert\Facades\Alert;
-use Validator;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+use Validator;
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $barang = Barang::all();
-        $montir = Montir::all();
-        $service = Service::all();
-        return view('frontEnd.page.index', compact('barang', 'montir', 'service'));
+    {
+        // $user=User::findOrFail($id);
+        return view('frontEnd.page.profile');
     }
 
     /**
@@ -34,10 +33,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        $barang = Barang::all();
-        $montir = Montir::all();
-        $service = Service::all();
-        return view('frontEnd.page.index', compact('barang', 'montir', 'service'));
+        //
     }
 
     /**
@@ -48,55 +44,7 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nama' => 'required',
-            'no_polisi' => 'required',
-            'tgl_boking' => 'required',
-            'id_service' => 'required',
-            'jumlah' => 'nullable',
-            'alamat' => 'required',
-            'no_hp' => 'string',
-            'id_user' => 'nullable',
-            'id_barang' => 'nullable',
-            'id_montir' => 'nullable',
-        ]);
-
-        $transaksi = new Transaksi();
-        $service = Service::findOrFail($request->id_service);
-        $transaksi->nama = $request->nama;
-        $transaksi->id_user = Auth::user()->id;
-        $transaksi->no_polisi = $request->no_polisi;
-        $transaksi->tgl_boking = $request->tgl_boking;
-        $transaksi->id_service = $request->id_service;
-        $transaksi->alamat = $request->alamat;
-        $transaksi->no_hp = Auth::user()->no_telepon;
-        $transaksi->id_montir = $request->id_montir;
-        if ($request->id_barang) {
-            $barang = Barang::where('id', $request->id_barang)->first();
-            $transaksi->total = $service->harga_service + ($barang->harga_barang*$transaksi->jumlah=$request->jumlah);  
-           
-        }
-        if ($request->id_barang) {
-            $transaksi->id_barang = $request->id_barang;
-            $transaksi->jumlah = $request->jumlah;
-            // dd($request);
-        } else {
-            $transaksi->id_barang = null;
-            $transaksi->jumlah = null;
-            $transaksi->total = $service->harga_service;
-            // $barang->stok_barang = $barang->stok_barang - $transaksi->jumlah ;
-            // dd($request);
-        }
-
-        $transaksi->save();
-        if ($request->id_barang) {
-            $barang->stok_barang = $barang->stok_barang - $transaksi->jumlah;
-            $barang->save();
-        }
-
-        // return redirect()->route('service.index');
-        // dd($request);
-        return back();
+        //
     }
 
     /**
@@ -130,59 +78,49 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rules =[
-            'id_montir'=>'required',
-            'status'=>'required',
+        $rules=[
+            'name'=>'required',
+            'email'=>'required',
+            'old_password' => 'nullable|string',
+            'password'=>'nullable|required_with:old_password|string|confirmed|min:8',
+            // 'role'=>'required',
+            'no_telepon'=>'required',
         ];
-        $messages =[
-            'id_montir.required'=>'Data Harus Diisi',
-            'status.required'=>'Data Harus Diisi',
+        $messages = [
+            'name.required'=>'Name Harus Diisi!',
+            'email.required'=>'Name Harus Diisi!',
+            'password.min:8'=>'Password Minimal Harus 8!',
+            // 'role.required'=>'Role jangan Kosong',
+            'no_telepon.required'=>'No Telp Jangan Kosong!',
         ];
         $validated = Validator::make($request->all(), $rules, $messages);
         if ($validated->fails()) {
             Alert::error('data yang anda input ada kesalahan', 'Oops!')->persistent("Ok");
-            return back()->withErrors($validated)->withInput();
+            return back()->withErrors($validated);
         }
-
-        $transaksi = Transaksi::findOrFail($id);
-        $transaksi->id_montir = $request->id_montir;
-        $transaksi->status = $request->status;
-        // $service = Service::findOrFail($request->id_service);
-        // $montir = Montir::all();
-        // $transaksi->nama = $request->nama;
-        // $transaksi->id_user = Auth::user()->id;
-        // $transaksi->no_polisi = $request->no_polisi;
-        // $transaksi->tgl_boking = $request->tgl_boking;
-        // $transaksi->id_service = $request->id_service;
-        // $transaksi->alamat = $request->alamat;
-        // $transaksi->no_hp = Auth::user()->no_telepon;
-        
-        // if ($request->id_barang) {
-        //     $barang = Barang::where('id', $request->id_barang)->first();
-        //     $transaksi->total = $service->harga_service + ($barang->harga_barang*$transaksi->jumlah=$request->jumlah);  
-           
-        // }
-        // if ($request->id_barang) {
-        //     $transaksi->id_barang = $request->id_barang;
-        //     $transaksi->jumlah = $request->jumlah;
-        //     // dd($request);
-        // } else {
-        //     $transaksi->id_barang = null;
-        //     $transaksi->jumlah = null;
-        //     $transaksi->total = $service->harga_service;
-        //     // $barang->stok_barang = $barang->stok_barang - $transaksi->jumlah ;
-        //     // dd($request);
-        // }
-        
-        $transaksi->save();
-        // if ($request->id_barang) {
-            //     $barang->stok_barang = $barang->stok_barang - $transaksi->jumlah;
-            //     $barang->save();
-            // }
-            
-        // return redirect()->route('service.index');
-        // dd($request);
-        Alert::success('Done', 'Data berhasil diedit');
+        $user=User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        // $user->password = $request->password;
+        if ($request->filled('old_password')) {
+            if (Hash::check($request->old_password, $user->password)) {
+                $user->update([
+                    'password' => Hash::make($request->password)
+                ]);
+            } else {
+                return back()
+                    ->withErrors(['old_password' => __('Please enter the correct password')])
+                    ->withInput();
+            }
+        }
+        $user->role = $request->role;
+        // $user->profile = $request->profile;
+        $user->alamat = $request->alamat;
+        $user->no_telepon = $request->no_telepon;
+        $user->no_polisi = $request->no_polisi;
+        $user->save();
+        // Alert::success('Done', 'Data berhasil diedit');
+        Alert::toast('Akun Berhasil DiEdit', 'success')->autoClose(2000);
         return back();
     }
 
@@ -195,13 +133,5 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function adminTable(){
-        $barang = Barang::all();
-        $montir = Montir::all();
-        $service = Service::all();
-        $transaksi = Transaksi::all();
-        return view('backEnd.transaksi.index', compact('barang', 'montir', 'service','transaksi'));
     }
 }

@@ -47,7 +47,7 @@
             @php
                 $no = 1;
             @endphp
-            @foreach($transaksi as $data)
+            @foreach($transaksi->where('status','Selesai') as $data)
             <tr @if($data->status != 'Selesai')
                 class="red"
             @endif>
@@ -62,15 +62,16 @@
                 <td>{{ $data->jumlah }}</td>
                 <td>{{ $data->montir->nama_montir }}</td>
                 <td>{{ $data->alamat }}</td>
-                <td>Rp.{{ number_format($data->total)}}</td>
+                <td>Rp {{ number_format($data->total,0,',','.')}}</td>
                 {{-- @endif --}}
             </tr>
             @endforeach
             <tr class="total">
                 <td colspan="10" align="center"> Total Semua</td>
-                <td>Rp.{{number_format($transaksi->sum('total')) }}</td>
+                <td>Rp.{{number_format($transaksi->where('status','Selesai')->sum('total'),0,',','.') }}</td>
             </tr>
         </tbody>
-    </table>    
+    </table>
+
 </body>
 </html>

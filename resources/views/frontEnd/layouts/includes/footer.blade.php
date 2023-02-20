@@ -63,7 +63,7 @@
                 Copyright &copy;<script>
                     document.write(new Date().getFullYear());
 
-                </script> SMK ASSALAAM BANDUNG | X RPL 2 | KELOMPOK 1
+                </script> Service Motor Di Rumah 
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
         </div>

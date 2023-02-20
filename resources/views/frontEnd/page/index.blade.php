@@ -1,10 +1,10 @@
 @extends('frontEnd.layouts.indexx')
 @section('banner')
 <section class="banner-area organic-breadcrumb">
-  <div class="container">
-    <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-      <div class="col-first">
-        <h1>Booking Service</h1>
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Booking Service</h1>
         <nav class="d-flex align-items-center">
           <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
           <a href="category.html">Booking Servicer</a>
@@ -15,6 +15,7 @@
 </section>
 @endsection
 @section('contentt')
+@include('sweetalert::alert')
 <section class="mb-5 mt-5">
     <div class="container">
         <div class="tab-pane">
@@ -96,7 +97,7 @@
                             <option value="0">Pilih Komponen Request</option>
                             @foreach($barang as $barangs)
                             @if($barangs->status == 'ready')
-                            <option value="{{$barangs->id}}">{{$barangs->nama_barang }} | {{$barangs->harga_barang}} </option>
+                            <option value="{{$barangs->id}}">{{$barangs->merk }} | {{$barangs->harga_barang}} </option>
                             @endif
                             @endforeach
                         </select>

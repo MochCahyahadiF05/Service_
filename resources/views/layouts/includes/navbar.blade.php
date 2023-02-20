@@ -124,7 +124,7 @@
                 </a>
                 <div class="dropdown-divider"></div> --}}
                 <a href="{{route('user.profile',Auth::user()->id)}}" class="dropdown-item">
-                    <i class="fa-solid fa-gear mr-2"></i> Change Password
+                    <i class="fa-solid fa-gear mr-2"></i> Settings
                     {{-- <span class="float-right text-muted text-sm">3 mins</span> --}}
                 </a>
                 {{-- <a href="{{route('setting.index',Auth::user()->id)}}" class="dropdown-item">

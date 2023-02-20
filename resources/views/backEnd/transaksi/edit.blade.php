@@ -13,7 +13,7 @@
                         <div class="mb-3">
                             <label class="form-label">Pilih Montir</label>
                             <select class="form-select @error('id_montir') is-invalid @enderror" name="id_montir" value="{{$data->id_montir}}">
-                                <option value="null" aria-readonly="false" selected>Pilih Montir</option>
+                                {{-- <option value="null" aria-readonly="false" selected>Pilih Montir</option> --}}
                                 @foreach($montir as $montirs)
                                     @if($montirs->status == 'aktif')
                                     <option value="{{$montirs->id}}" {{$montirs->id == $montirs->id ? 'selected' : ''}}>{{$montirs->nama_montir }}</option>

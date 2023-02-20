@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Admin Service</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -131,8 +131,7 @@
 
     </script>
     {{-- <script src="https://cdnnjs.cloudflare.com/ajax/libs/sweetalert/2.1.9/sweetalert.min.js"></script>
-    <script type="text/javascript">
-        $('.show_confirm').click(function(event){
+    <script type="text/javascript"        $('.show_confirm').click(function(event){
             var form = $(this).closest("form");
             var name = $(this).data("name");
             event.preventDefault();
@@ -148,6 +147,103 @@
                     form.submit();
                 }
             });
+        });
+    </script> --}}
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    {{-- <script>
+        $(function() {
+            $("#start_date").datepicker({
+                "dateFormat": "yy-mm-dd"
+            });
+            $("#end_date").datepicker({
+                "dateFormat": "yy-mm-dd"
+            });
+        });
+        // Fetch records
+        function fetch(start_date, end_date) {
+            $.ajax({
+                url: "{{ route('records') }}",
+                type: "GEt",
+                data: {
+                    start_date: start_date,
+                    end_date: end_date
+                },
+                dataType: "json",
+                success: function(data) {
+                    // Datatables
+                    var i = 1;
+                    $('#records').DataTable({
+                        "data": data.transaksis,
+                        // buttons
+                        "dom": "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+                            "<'row'<'col-sm-12'tr>>" +
+                            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                        "buttons": [
+                            'copy', 'csv', 'excel', 'pdf', 'print'
+                        ],
+                        // responsive
+                        "responsive": true,
+                        "columns": [{
+                                "data": "id",
+                                "render": function(data, type, row, meta) {
+                                    return i++;
+                                }
+                            },
+                            {
+                                "data": "invoice_no"
+                            },
+                            {
+                                "data": "lama_sewa"
+                            },
+                            {
+                                "data": "tgl_sewa",
+                                "render": function(data, type, row, meta) {
+                                    return moment(row.tgl_sewa).format('DD-MM-YYYY');
+                                }
+                            },
+                            {
+                                "data": "tgl_kembali",
+                                "render": function(data, type, row, meta) {
+                                    return moment(row.tgl_kembali).format('DD-MM-YYYY');
+                                }
+                            },
+                            {
+                                "data": "id_mobil"
+                            },
+                            {
+                                "data": "id_user"
+                            },
+                            {
+                                "data": "created_at",
+                                "render": function(data, type, row, meta) {
+                                    return moment(row.created_at).format('DD-MM-YYYY');
+                                }
+                            }
+                        ]
+                    });
+                }
+            });
+        }
+        fetch();
+        // Filter
+        $(document).on("click", "#filter", function(e) {
+            e.preventDefault();
+            var start_date = $("#start_date").val();
+            var end_date = $("#end_date").val();
+            if (start_date == "" || end_date == "") {
+                alert("Both date required");
+            } else {
+                $('#records').DataTable().destroy();
+                fetch(start_date, end_date);
+            }
+        });
+        // Reset
+        $(document).on("click", "#reset", function(e) {
+            e.preventDefault();
+            $("#start_date").val(''); // empty value
+            $("#end_date").val('');
+            $('#records').DataTable().destroy();
+            fetch();
         });
     </script> --}}
 </body>

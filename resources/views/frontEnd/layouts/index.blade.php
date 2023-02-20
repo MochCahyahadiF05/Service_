@@ -15,7 +15,7 @@
     <!-- meta character set -->
     <meta charset="UTF-8">
     <!-- Site Title -->
-    <title>Bursa Cell Phone</title>
+    <title>Service Home</title>
     <!--
 		CSS
 		============================================= -->
@@ -57,7 +57,7 @@
                                     {{-- <p>Anda Tidak usah datang ke Bengkel untuk Service  Motor Karana anda tinggal memanggil kami kapanpun dan dimanapun </p> --}}
                                     <p>Anda Tidak Perlu Mengantri lagi Di Bengkel, dan Menunggu lama, kini Anda tinggal Memanggil Kami untuk datng ke tempat anda dimanapun dan kapanpun.</p>
                                     <div class="add-bag d-flex align-items-center">
-                                        <a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
+                                        <a class="add-btn" href="{{url('/transaksi')}}"><span class="lnr lnr-cross"></span></a>
                                         <span class="add-text text-uppercase">Pesan Sekarang</span>
                                     </div>
                                 </div>

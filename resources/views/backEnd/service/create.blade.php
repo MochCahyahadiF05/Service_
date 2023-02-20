@@ -34,7 +34,7 @@
                         <div class="mb-3">
                             <label class="form-label">Status</label>
                             <select class="form-select @error('status') is-invalid @enderror" name="status">
-                                <option value="null" aria-readonly="false">Status</option>
+                                {{-- <option value="null" aria-readonly="false">Status</option> --}}
                                 <option value="aktif">Aktif</option>
                                 <option value="tidak aktif">Tidak Aktif</option>
                             </select>

@@ -54,14 +54,14 @@
                                         <td>{{ $data->tgl_boking }}</td>
                                         <td>{{ $data->service->nama_service }}</td>
                                         <td>Rp {{ number_format($data->total)}}</td>
-                                        <td>{{$data->status}}</td>
+                                        <td>{{$data->status ?? 'Belum DI Terima'}}</td>
                                         <td>
                                             <form action="" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#detaiTransaksi-{{$data->id}}"><i class="nav-icon fas fa-eye"></i></button>&nbsp;
                                                 <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#updateTransaksi-{{ $data->id }}"><i class="nav-icon fas fa-edit"></i></button>&nbsp;
-                                                <button type="button" class="btn btn-sm btn-outline-success" ><a href="{{route('laporan.show',$data->id)}}"><i class="nav-icon fas fa-edit"></i></a></button>&nbsp;
+                                                <button type="button" class="btn btn-sm btn-outline-primary" ><a href="{{route('laporan.show',$data->id)}}"><i class="nav-icon fas fa-print"></i></a></button>&nbsp;
                                                 {{-- <button type="submit" class="btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Delete' onclick="return confirm('apakah anda yakin?')">
                                                     <i class="nav-icon fas fa-trash-alt"></i> 
                                                 </button> --}}

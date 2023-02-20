@@ -11,6 +11,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PDFController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $transaksi = Transaksi::all();
