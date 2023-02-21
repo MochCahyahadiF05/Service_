@@ -47,10 +47,11 @@
             @php
                 $no = 1;
             @endphp
-            @foreach($transaksi->where('status','Selesai') as $data)
-            <tr @if($data->status != 'Selesai')
+            @foreach($transaksi as $data)
+            {{-- <tr @if($data->status != 'Selesai')
                 class="red"
-            @endif>
+            @endif> --}}
+            <tr>
                 {{-- @if($data->status == 'Selesai')     --}}
                 <td class="no" >{{$no++}}</td>
                 <td>{{$data->nama}}</td>

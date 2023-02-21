@@ -1,5 +1,7 @@
+
 @extends('frontEnd.layouts.indexx')
 @section('banner')
+@include('sweetalert::alert')
 <section class="banner-area organic-breadcrumb">
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
@@ -15,7 +17,6 @@
 </section>
 @endsection
 @section('contentt')
-@include('sweetalert::alert')
 <section class="mb-5 mt-5">
     <div class="container">
         <div class="tab-pane">

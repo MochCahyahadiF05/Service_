@@ -75,6 +75,7 @@ class TransaksiController extends Controller
         $transaksi->alamat = $request->alamat;
         $transaksi->no_hp = Auth::user()->no_telepon;
         $transaksi->id_montir = $request->id_montir;
+        $transaksi->status = "Boking";
         if ($request->id_barang) {
             $barang = Barang::where('id', $request->id_barang)->first();
             $transaksi->total = $service->harga_service + ($barang->harga_barang*$transaksi->jumlah=$request->jumlah);  
@@ -100,7 +101,7 @@ class TransaksiController extends Controller
 
         // return redirect()->route('service.index');
         // dd($request);
-        Alert::toast('Pesan berhasil', 'success')->autoClose(2000);
+        Alert::toast('Pesan berhasil', 'success')->autoClose(10000);
         // Alert::success('Done', 'Pesan Berhasil Tunggu Di Konfirmasi')->autoClose(2000);
         return back();
     }

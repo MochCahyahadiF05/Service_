@@ -32,14 +32,19 @@ class PDFController extends Controller
     function print(Request $request) {
         $start = $request->tanggal_awal;
         $end = $request->tanggal_akhir;
+        $status = $request->status;
 
         if ($end >= $start) {
-            $transaksi = Transaksi::whereBetween('tgl_boking', [$start, $end])->get();
-            $pdf = PDF::loadview('layouts.pdf', compact('transaksi', 'start', 'end'))->setPaper('a4', 'landscape');
+            $transaksi = Transaksi::whereBetween('tgl_boking', [$start, $end])->where('status',$status)->get();
+            $pdf = PDF::loadview('layouts.pdf', compact('transaksi', 'start', 'end','status'))->setPaper('a4', 'landscape');
             return $pdf->stream('laporan.pdf');
         } elseif ($end < $start) {
             Alert::error('Tanggal yang anda masukkan tidak valid', 'Oops!')->persistent("Ok");
+            // Alert::toast('Pesan berhasil', 'success')->autoClose(2000);
             return redirect()->back();
+        }
+        else{
+            return view('errors.404');
         }
         $transaksi = Transaksi::all();
         $montir = Montir::all();

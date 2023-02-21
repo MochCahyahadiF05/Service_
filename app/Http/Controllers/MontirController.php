@@ -67,7 +67,8 @@ class MontirController extends Controller
         $montir->tlp_montir = $request->tlp_montir;
         $montir->status = $request->status;
         $montir->save();
-        Alert::success('Done', 'Data berhasil dibuat');
+        // Alert::success('Done', 'Data berhasil dibuat');
+        Alert::toast('Pesan berhasil', 'success')->autoClose(10000);
         return back();
     }
 
