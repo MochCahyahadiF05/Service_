@@ -43,7 +43,7 @@
                         <tr>
                             <td>Nama Montir</td>
                             <td>:</td>
-                            <td>{{$transaksi->montir->nama_montir}}</td>
+                            <td>{{$transaksi->montir->nama_montir ?? ''}}</td>
                         </tr>
                     </table>
                 </div>
@@ -62,7 +62,7 @@
                         <tr>
                             <td>No Telepon</td>
                             <td>:</td>
-                            <td>{{$transaksi->user->no_telepon}}</td>
+                            <td>{{$transaksi->user->no_telepon ?? 'Akun Telah Dihapus'}}</td>
                         </tr>
                     </table>
                 </div>
@@ -78,8 +78,8 @@
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td>{{$transaksi->service->nama_service}}</td>
-                        <td>Rp. {{number_format($transaksi->service->harga_service,0,',','.')}}</td>
+                        <td>{{$transaksi->service->nama_service ?? ''}}</td>
+                        <td>Rp. {{number_format($transaksi->service->harga_service,0,',','.' ?? '')}}</td>
                         <td>1</td>
                     </tr>
                     @if($transaksi->id_barang)
@@ -87,7 +87,7 @@
                     <tr>
                         <td>2</td>
                         <td>{{$transaksi->barang->merk}}</td>
-                        <td>Rp. {{number_format($transaksi->barang->harga_barang,0,',','.')}}</td>
+                        <td>Rp. {{number_format($transaksi->barang->harga_barang,0,',','.' ?? '')}}</td>
                         <td>2</td>
                     </tr>
                     @endif

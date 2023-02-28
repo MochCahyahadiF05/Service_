@@ -129,7 +129,17 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user=User::findOrFail($id);
+        if ($user->role == "admin") {
+            Alert::error('Noted', 'Admin tidak boleh dihapus!');
+            return back();
+        }
+        else{
+
+            $user->delete();
+            Alert::success('Done', 'Data berhasil dihapus');
+            return redirect()->route('user.index');
+        }
     }
     public function profile()
     {

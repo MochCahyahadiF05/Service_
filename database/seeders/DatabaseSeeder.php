@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(UserSeeder::class);
-        // $this->call(BarangSeeder::class);
-        // $this->call(ServiceSeeder::class);
+        $this->call(BarangSeeder::class);
+        $this->call(ServiceSeeder::class);
     }
 }

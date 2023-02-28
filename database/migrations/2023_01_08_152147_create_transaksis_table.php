@@ -16,7 +16,12 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->unsignedbigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
+            // $table->foreign('id_user')->references('id')->on('users');
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('nama');
             $table->string('no_polisi');
             $table->date('tgl_boking');

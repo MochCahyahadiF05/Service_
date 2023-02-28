@@ -44,27 +44,38 @@
                             <tbody>
                                 @php $no = 1; @endphp
                                 @foreach ($user as $data)
-                                    <tr>
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{ $data->name }}</td>
-                                        <td>{{ $data->email }}</td>
-                                        <td> {{$data->role}} </td>
-                                        <td>{{ $data->no_telepon }}</td>
-                                        <td>
+                                @if($data->id != Auth::user()->id)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $data->name }}</td>
+                                    <td>{{ $data->email }}</td>
+                                    <td> {{$data->role}} </td>
+                                    <td>{{ $data->no_telepon }}</td>
+                                    <td>
+                                        <form action="{{route('user.destroy',$data->id)}}" method="post">
+                                        @csrf
+                                        @method('delete')
                                             <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#editUserData-{{ $data->id }}"><i class="nav-icon fas fa-edit"></i></button>&nbsp;
                                             <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#showUserData-{{ $data->id }}"><i class="nav-icon fas fa-eye"></i></button>
-                                            {{-- <a href="{{route('user.edit',$data->id)}}"
-                                                class="btn btn-sm btn-outline-success">
-                                                
-                                                
-                                            </a> | --}}
-                                            {{-- <a href="{{ route('mobil.show', $data->id) }}"
-                                                class="btn btn-sm btn-outline-warning">
-                                                <i class="nav-icon fas fa-eye"></i>
-                                                
-                                            </a> --}}
-                                        </td>
-                                    </tr>
+                                            @if($data->role != "admin")    
+                                            <button type="submit" class="btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Delete' onclick="return confirm('apakah anda yakin?')">
+                                                <i class="nav-icon fas fa-trash-alt"></i> 
+                                            </button>
+                                            @endif
+                                        </form>
+                                        {{-- <a href="{{route('user.edit',$data->id)}}"
+                                            class="btn btn-sm btn-outline-success">
+                                            
+                                            
+                                        </a> | --}}
+                                        {{-- <a href="{{ route('mobil.show', $data->id) }}"
+                                            class="btn btn-sm btn-outline-warning">
+                                            <i class="nav-icon fas fa-eye"></i>
+                                            
+                                        </a> --}}
+                                    </td>
+                                </tr>
+                                @endif
                                     @include('backEnd.user.edit')
                                     @include('backEnd.user.show')
                                 @endforeach

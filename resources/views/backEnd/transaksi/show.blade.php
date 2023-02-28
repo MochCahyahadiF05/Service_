@@ -10,7 +10,7 @@
                     <div class="row mt-2">
                         <div class="col">
                             <label for="" class="form-label">User Yang Pesan</label>
-                            <input type="text" class="form-control" value="{{$data->user->name}}" readonly>
+                            <input type="text" class="form-control" value="{{$data->user->name ?? 'Akun telah Dihapus'}}" readonly>
                         </div>
                         <div class="col">
                             <label for="" class="form-label">Nama Montir</label>
