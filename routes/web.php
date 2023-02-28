@@ -48,6 +48,7 @@ Auth::routes();
 Route::get('riwayat/{id}',[RiwayatController::class,'index'])->name('riwayat.index');
 Route::get('transaksi',[TransaksiController::class,'create'])->name('transaksi.create');
 Route::post('transaksi/store',[TransaksiController::class,'store'])->name('transaksi.store');
+Route::put('riwayat/cencel/{id}',[RiwayatController::class,'cencel'])->name('transaksi.cencel');
 // Route::resource('pesan',Transaksi1Controller::class);
 // Route::resource('transaksi',TransaksiController::class);
 

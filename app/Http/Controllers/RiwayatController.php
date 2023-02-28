@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class RiwayatController extends Controller
 {
@@ -18,6 +20,14 @@ class RiwayatController extends Controller
         $user = auth()->id();
         $transaksi = Transaksi::where('id_user', $user)->get();
         return view('frontEnd.page.history',compact('transaksi'));
+    }
+    public function cencel($id)
+    {
+        $transaksi = Transaksi::findOrFail($id);
+        $transaksi->status = 'Cencel';
+        $transaksi->save();
+        Alert::toast('Pesan berhasil', 'success')->autoClose(2000);
+        return back();
     }
 
     /**

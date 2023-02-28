@@ -101,7 +101,7 @@ class TransaksiController extends Controller
 
         // return redirect()->route('service.index');
         // dd($request);
-        Alert::toast('Pesan berhasil', 'success')->autoClose(10000);
+        Alert::toast('Pesan berhasil', 'success')->autoClose(2000);
         // Alert::success('Done', 'Pesan Berhasil Tunggu Di Konfirmasi')->autoClose(2000);
         return back();
     }

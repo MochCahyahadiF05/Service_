@@ -16,6 +16,7 @@
 @endsection
 
 @section('contentt')
+@include('sweetalert::alert')
 <div class="container">
     <table class="table table-borderless mt-4">
         <thead>
@@ -29,6 +30,7 @@
                 <th>No Telepon Montir</th>
                 <th>Total</th>
                 <th>Status</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -43,6 +45,17 @@
                 <td>{{$data->montir->tlp_montir ?? ''}}</td>
                 <td>Rp. {{number_format($data->total,0,',','.')}}</td>
                 <td>{{$data->status ?? 'Belum di Proses'}}</td>
+                <td>
+                    <form action="{{route('transaksi.cencel',$data->id)}}" method="post">
+                        @method('put')
+                        @csrf
+                        @if($data->status != 'Cencel')
+                        <button type="submit" class="btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Delete'>
+                            <i class="nav-icon fas fa-trash-alt"></i> 
+                        </button>
+                        @endif
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>
