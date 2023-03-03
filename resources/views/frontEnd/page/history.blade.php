@@ -51,7 +51,7 @@
                         @csrf
                         @if($data->status != 'Cencel')
                         <button type="submit" class="btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Delete'>
-                            <i class="nav-icon fas fa-trash-alt"></i> 
+                            <i class="fa-solid fa-xmark"></i>
                         </button>
                         @endif
                     </form>
