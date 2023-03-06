@@ -86,6 +86,7 @@
             <div class="row">
                 <div class="col-lg-9 col-6">
                     <canvas id="myChart" height="100px"></canvas>
+                   
                 </div>
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success">
@@ -101,26 +102,36 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <p>{{$bookings}}</p>
+                <p>{{$selesais}}</p>
+                <p>{{$cancels}}</p>
+                <p>{{$p}}</p>
+            </div>
         </div><!-- /.container-fluid -->
     </section>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{{-- <script src="https://code.highcharts.com/highcharts.js"></script> --}}
 <script type="text/javascript">
     var labels =  {{ Js::from($labels) }};
     var selesai =  {{ Js::from($selesais) }};
     var booking =  {{ Js::from($bookings) }};
     var cancel =  {{ Js::from($cancels) }};
     var p =  {{ Js::from($p) }};
+    var total = {{ Js::from($total)}};
+    var bulan = {{ Js::from($bulan)}};
+    
   
     const data = {
-        labels: labels,
+        labels: bulan,
         datasets: [
             {
-                label: 'Transaksi',
+                label: 'Pendapatan Per Bulan',
                 backgroundColor: 'purple',
                 borderColor: 'purple',
-                data: p,
+                data: total,
             },
             // {
             //     label: 'Selesai',
@@ -144,7 +155,7 @@
     };
   
     const config = {
-        type: 'line',
+        type: 'bar',
         data: data,
         options: {
             responsive: true,
@@ -165,4 +176,32 @@
         config
     );
 </script>
+{{-- <script type="text/javascript">
+    var total = {{ json_encode($total) }}
+    var bulan = {{ json_encode($bulan) }}
+    Highcharts.chart('grafik',{
+        title: {
+            text: 'test'
+        }
+        xAxis:{
+            categories : bulan
+        }
+        yAxis:{
+            title:{
+                text:'tes'
+            }
+        }
+        plotOptions:{
+            series:{
+                allowPointSelect: true
+            }
+        }
+        series:[
+            {
+                name:'nominal',
+                data:total
+            }
+        ]
+    })
+</script> --}}
 @endsection

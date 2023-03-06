@@ -39,44 +39,69 @@ class HomeController extends Controller
         // $transaksi = Transaksi::where('status','Selesai')->whereBetween('tgl_boking', [$startOfMonth,$endOfMonth])->sum('total');
 
         //chart
-        $chartTransaksi = Transaksi::select(DB::raw("COUNT(*) as count"),
+        $chartTransaksi = Transaksi::select(DB::raw("COUNT(tgl_boking) as count"),
             DB::raw("MONTHNAME(tgl_boking) as month_name"))
                 
-                ->whereYear('created_at', date('Y'))
+                ->whereYear('tgl_boking', date('Y'))
                 ->groupBy(DB::raw("month_name"))
-                ->orderBy('id','ASC')
+                ->orderBy('tgl_boking','ASC')
                 ->pluck('count', 'month_name');
 
-        $booking = Transaksi::select(DB::raw("COUNT(*) as count"),
-            DB::raw("MONTHNAME(tgl_boking) as month_name"))
-                ->where('status','Boking')
-                ->whereYear('created_at', date('Y'))
-                ->groupBy(DB::raw("month_name"))
-                ->orderBy('id','ASC')
-                ->pluck('count', 'month_name');
+        // $booking = Transaksi::select(DB::raw("COUNT(tgl_boking) as count"),
+        //     DB::raw("MONTHNAME(tgl_boking) as month_name"))
+        //     ->where('status','Boking')
+        //     ->whereYear('tgl_boking', date('Y'))
+        //     ->groupBy(DB::raw("month_name"))
+        //     ->orderBy('tgl_boking','ASC')
+        //     ->pluck('count', 'month_name');
+        
+        $booking = Transaksi::select(\DB::raw("COUNT(*) as count"))
+        ->where('status','Boking')
+                    ->whereYear('tgl_boking', date('Y'))
+                    ->groupBy(\DB::raw("Month(tgl_boking)"))
+                    ->pluck('count');
         
         $cancel = Transaksi::select(DB::raw("COUNT(*) as count"),
-        DB::raw("MONTHNAME(created_at) as month_name"))
+        DB::raw("MONTHNAME(tgl_boking) as month_name"))
             ->where('status','Cencel')
-            ->whereYear('created_at', date('Y'))
+            ->whereYear('tgl_boking', date('Y'))
             ->groupBy(DB::raw("month_name"))
-            ->orderBy('id','ASC')
+            ->orderBy('tgl_boking','ASC')
             ->pluck('count', 'month_name');
 
         $selesai = Transaksi::select(DB::raw("COUNT(*) as count"),
-        DB::raw("MONTHNAME(created_at) as month_name"))
+        DB::raw("MONTHNAME(tgl_boking) as month_name"))
             ->where('status','Selesai')
-            ->whereYear('created_at', date('Y M D'))
+            ->whereYear('tgl_boking', date('Y'))
             ->groupBy(DB::raw("month_name"))
-            ->orderBy('id','ASC')
+            ->orderBy('tgl_boking','ASC')
             ->pluck('count', 'month_name');
 
+        // test chart 2
+
+        $total = Transaksi::select(DB::raw("CAST(SUM(total) as int) as total"))
+            ->GroupBy(DB::raw("Month(tgl_boking)"))
+            ->where('status', 'Selesai')
+            ->whereYear('tgl_boking', date('Y'))
+            ->pluck('total');
+
+        $bulan = Transaksi::select(DB::raw("MONTHNAME(tgl_boking) as bulan"))
+            ->GroupBy(DB::raw("MONTHNAME(tgl_boking)"))
+            ->where('status', 'Selesai')
+            // ->whereYear('tgl_boking', date('Y'))
+            ->orderBy('tgl_boking', 'ASC')
+            ->pluck('bulan');    
+
+        //close
         $labels = $chartTransaksi->keys();
         $cancels = $cancel->values();
         $bookings = $booking->values();
         $selesais = $selesai->values();
         $p = $chartTransaksi->values();
+        $label = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
 
-        return view('home',compact('user','montir','transaksi','transaksii','transaksiii','labels','cancels','bookings','selesais','p'));
+        
+
+        return view('home',compact('user','montir','transaksi','transaksii','transaksiii','labels','cancels','bookings','selesais','p','label','total','bulan'));
     }
 }

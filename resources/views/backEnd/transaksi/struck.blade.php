@@ -88,7 +88,7 @@
                         <td>2</td>
                         <td>{{$transaksi->barang->merk}}</td>
                         <td>Rp. {{number_format($transaksi->barang->harga_barang,0,',','.' ?? '')}}</td>
-                        <td>2</td>
+                        <td>{{$transaksi->jumlah}}</td>
                     </tr>
                     @endif
                     {{-- <tr>

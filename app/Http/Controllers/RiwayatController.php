@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
+use App\Models\Barang;
 use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -26,6 +27,11 @@ class RiwayatController extends Controller
         $transaksi = Transaksi::findOrFail($id);
         $transaksi->status = 'Cencel';
         $transaksi->save();
+        if ($transaksi->id_barang) {
+            $barang = Barang::findOrFail($transaksi->id_barang);
+            $barang->stok_barang = $barang->stok_barang + $transaksi->jumlah;
+            $barang->save();
+        }
         Alert::toast('Pesan berhasil', 'success')->autoClose(2000);
         return back();
     }
